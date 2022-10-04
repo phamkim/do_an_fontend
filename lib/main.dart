@@ -1,12 +1,13 @@
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import './helper/binding.dart';
-import './views/control_view.dart';
 import './theme.dart';
+import 'helper/control_binding.dart';
+import 'views/control_view.dart';
+
 
 void main() async {
-
+  CachedNetworkImage.logLevel = CacheManagerLogLevel.debug;
   runApp(
     MyApp(
       appTheme: AppTheme(),
@@ -20,15 +21,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialBinding: Binding(),
-      title: 'k_app',
+      title: 'font_end',
+      initialBinding: ControlBinding(),
       theme: appTheme.light,
       darkTheme: appTheme.dark,
       themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
-      home: const Scaffold(
-        body: ControlView(),
-      ),
+      home: const ControlView(),
     );
   }
 }

@@ -7,7 +7,6 @@ abstract class AppColors {
   static const primary = Color(0xFFB980F0);
   static const secondary = Color(0xFFFE9898);
 
-
   static const textHighDark = secondary;
   static const textHighLight = secondary;
 
@@ -22,8 +21,8 @@ abstract class AppColors {
   static const iconLight = Color(0xFFB1B4C0);
   static const iconDark = Color(0xFFB1B3C1);
 
-  static const cardLight = Color(0xFFE5FBB8);
-  static const cardDark = Color(0xFFE7F6F2);
+  static const cardLight = Color(0xFFF4F6F1);
+  static const cardDark = Color(0xFF303334);
 
   static const appBarDark = Color(0xFF303334);
   static const appBarLight = Color(0xFFFFFFFF);
@@ -49,7 +48,9 @@ class AppTheme {
   /// Light theme and its settings.
   ThemeData get light => ThemeData(
         primaryColor: AppColors.primary,
+        focusColor: AppColors.secondary,
         brightness: Brightness.light,
+        highlightColor: AppColors.secondary,
         colorScheme:
             lightBase.colorScheme.copyWith(secondary: AppColors.secondary),
         visualDensity: visualDensity,
@@ -73,16 +74,16 @@ class AppTheme {
         primaryTextTheme: const TextTheme(
           headline6: TextStyle(color: AppColors.textDark),
         ),
-        iconTheme: const IconThemeData(color: AppColors.iconDark),
+        iconTheme: const IconThemeData(
+          color: AppColors.secondary,
+        ),
         textButtonTheme: TextButtonThemeData(
           style: TextButton.styleFrom(primary: AppColors.textDark),
         ),
         inputDecorationTheme: const InputDecorationTheme(
           suffixIconColor: AppColors.primary,
           prefixIconColor: AppColors.primary,
-
         ),
-
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(primary: AppColors.primary),
         ),
@@ -91,6 +92,8 @@ class AppTheme {
   /// Dark theme and its settings.
   ThemeData get dark => ThemeData(
         primaryColor: AppColors.primary,
+        focusColor: AppColors.secondary,
+        highlightColor: AppColors.secondary,
         brightness: Brightness.dark,
         colorScheme:
             darkBase.colorScheme.copyWith(secondary: AppColors.secondary),
@@ -114,7 +117,7 @@ class AppTheme {
         primaryTextTheme: const TextTheme(
           headline6: TextStyle(color: AppColors.textLight),
         ),
-        iconTheme: const IconThemeData(color: AppColors.iconLight),
+        iconTheme: const IconThemeData(color: AppColors.secondary),
         textButtonTheme: TextButtonThemeData(
           style: TextButton.styleFrom(
             primary: AppColors.textLight,

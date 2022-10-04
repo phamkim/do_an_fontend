@@ -1,3 +1,4 @@
+import 'package:do_an_fontend/helper/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../core/viewmodels/auth_view_model.dart';
@@ -39,7 +40,7 @@ class LoginForm extends GetWidget<AuthViewModel> {
               ),
             ),
             onSaved: (value) {
-
+              controller.updateUserName(value!);
             },
             validator: (value) {
               if (value == null) {
@@ -74,7 +75,7 @@ class LoginForm extends GetWidget<AuthViewModel> {
                 ),
               ),
               onSaved: (value) {
-
+                controller.updatePassWord(value!);
               },
               validator: (value) {
                 if (value == null) {
@@ -110,12 +111,12 @@ class LoginForm extends GetWidget<AuthViewModel> {
               elevation: 0,
               minimumSize: Size(size.width, btnHeight),
             ),
-            onPressed:  () {
-                    _formKey.currentState?.save();
-                    if (_formKey.currentState!.validate()) {
-
-                    }
-                  },
+            onPressed: () {
+              _formKey.currentState?.save();
+              if (_formKey.currentState!.validate()) {
+                controller.login();
+              }
+            },
             child: const Text(
               "SIGN IN",
               style: TextStyle(fontWeight: FontWeight.bold),
