@@ -1,12 +1,12 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../core/viewmodels/home_view_model.dart';
+import '../../core/controllers/home_controller.dart';
 import '../constance.dart';
 import 'empty.dart';
 import 'product_card.dart';
 
-class ListProduct extends GetView<HomeViewModel> {
+class ListProduct extends GetView<HomeController> {
   const ListProduct({Key? key}) : super(key: key);
 
   @override

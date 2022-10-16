@@ -1,18 +1,18 @@
 class Category {
   Category({
-    required this.sId,
-    required this.name,
-    required this.photo,
-    required this.description,
-    required this.createdAt,
-    required this.updatedAt,
+     this.sId,
+     this.name,
+     this.photo,
+     this.description,
+     this.createdAt,
+     this.updatedAt,
   });
-  late final String sId;
-  late final String name;
-  late final String photo;
-  late final String description;
-  late final String createdAt;
-  late final String updatedAt;
+   String? sId;
+   String? name;
+   String? photo;
+   String? description;
+   String? createdAt;
+   String? updatedAt;
 
   Category.fromJson(Map<String, dynamic> json){
     sId = json['_id'];

@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 abstract class AppColors {
   static const primary = Color(0xFFB980F0);
-  static const secondary = Color(0xFFFE9898);
+  static const secondary = Color(0xFF8633D5);
 
   static const textHighDark = secondary;
   static const textHighLight = secondary;
@@ -21,7 +21,7 @@ abstract class AppColors {
   static const iconLight = Color(0xFFB1B4C0);
   static const iconDark = Color(0xFFB1B3C1);
 
-  static const cardLight = Color(0xFFF4F6F1);
+  static const cardLight = Color(0xFFFFFFFF);
   static const cardDark = Color(0xFF303334);
 
   static const appBarDark = Color(0xFF303334);
@@ -29,7 +29,7 @@ abstract class AppColors {
 }
 
 abstract class _LightColors {
-  static const background = Colors.white;
+  static const background = Color(0xFFF4F6F1);
   static const card = AppColors.cardLight;
 }
 
@@ -57,8 +57,14 @@ class AppTheme {
         textTheme:
             GoogleFonts.mulishTextTheme().apply(bodyColor: AppColors.textDark),
         backgroundColor: _LightColors.background,
+        bottomAppBarColor: _LightColors.card,
         appBarTheme: lightBase.appBarTheme.copyWith(
-          iconTheme: lightBase.iconTheme,
+          iconTheme:  const IconThemeData(
+            color: AppColors.primary,
+          ),
+          actionsIconTheme:const IconThemeData(
+            color: AppColors.primary,
+          ),
           backgroundColor: Colors.transparent,
           elevation: 0,
           centerTitle: true,
@@ -74,11 +80,13 @@ class AppTheme {
         primaryTextTheme: const TextTheme(
           headline6: TextStyle(color: AppColors.textDark),
         ),
-        iconTheme: const IconThemeData(
-          color: AppColors.secondary,
-        ),
         textButtonTheme: TextButtonThemeData(
-          style: TextButton.styleFrom(primary: AppColors.textDark),
+          style: TextButton.styleFrom(
+            primary: AppColors.textDark,
+          ),
+        ),
+        iconTheme: const IconThemeData(
+          color: AppColors.primary,
         ),
         inputDecorationTheme: const InputDecorationTheme(
           suffixIconColor: AppColors.primary,

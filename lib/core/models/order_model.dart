@@ -2,25 +2,26 @@ import 'product_model.dart';
 
 class Order {
   Order({
-    required this.sId,
+    this.sId,
     required this.product,
     required this.quantity,
     required this.priceUnit,
-    required this.createdAt,
-    required this.updatedAt,
+    this.createdAt,
+    this.updatedAt,
   });
-  late final String sId;
+
+  String? sId;
   late final Product product;
-  late final int quantity;
-  late final int priceUnit;
-  late final String createdAt;
-  late final String updatedAt;
+  int quantity = 0;
+  double priceUnit = 0.0;
+  String? createdAt;
+  String? updatedAt;
 
   Order.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     product = Product.fromJson(json['product']);
     quantity = json['quantity'];
-    priceUnit = json['priceUnit'];
+    priceUnit = double.parse(json['priceUnit'].toString());
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
   }

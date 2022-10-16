@@ -1,11 +1,9 @@
 
-
-import 'package:do_an_fontend/core/viewmodels/control_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
-class BottomNav extends GetView<ControlViewModel> {
+class BottomNav extends GetView {
   const BottomNav({Key? key}) : super(key: key);
 
   @override

@@ -1,35 +1,35 @@
 class Product {
   Product({
-    required this.sId,
-    required this.name,
-    required this.photo,
-    required this.description,
-    required this.quantity,
-    required this.price,
-    required this.discount,
-    required this.category,
-    required this.createdAt,
-    required this.updatedAt,
+    this.sId,
+    this.name,
+    this.photo,
+    this.description,
+    this.quantity,
+    this.price,
+    this.discount,
+    this.category,
+    this.createdAt,
+    this.updatedAt,
   });
-  late final String sId;
-  late final String name;
-  late final List<String> photo;
-  late final String description;
-  late final int quantity;
-  late final int price;
-  late final double discount;
-  late final String category;
-  late final String createdAt;
-  late final String updatedAt;
+  String? sId;
+  String? name;
+  List<String>? photo;
+  String? description;
+  int? quantity;
+  double? price;
+  double? discount;
+  String? category;
+  String? createdAt;
+  String? updatedAt;
 
-  Product.fromJson(Map<String, dynamic> json){
+  Product.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     name = json['name'];
     photo = json['photo'].cast<String>();
     description = json['description'];
     quantity = json['quantity'];
-    price = json['price'];
-    discount = json['discount'];
+    price = double.parse(json['price'].toString());
+    discount = double.parse(json['discount'].toString());
     category = json['category'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];

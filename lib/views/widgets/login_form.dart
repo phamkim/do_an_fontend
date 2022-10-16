@@ -1,12 +1,10 @@
-import 'package:do_an_fontend/helper/logger.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../core/viewmodels/auth_view_model.dart';
-import '../auth/Register_view.dart';
-
+import '../../core/controllers/auth_controller.dart';
 import '../constance.dart';
 
-class LoginForm extends GetWidget<AuthViewModel> {
+class LoginForm extends GetWidget<AuthController> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   LoginForm({Key? key}) : super(key: key);
 
@@ -96,7 +94,7 @@ class LoginForm extends GetWidget<AuthViewModel> {
               ),
               TextButton(
                 onPressed: () {
-                  Get.to(RegisterView());
+                  Get.toNamed("/register");
                 },
                 child: Text(
                   "Sign Up",

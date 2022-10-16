@@ -51,9 +51,7 @@ class TransactionService extends ITransactionService {
   @override
   Future<List<Transaction>?> getAll({String? token, String? query}) async {
     try {
-      const accessToken =
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzM3YzBjZTlkYjUzZjBlNGViOTJkZDkiLCJpYXQiOjE2NjQ4OTE4MTcsImV4cCI6MTY2NDg5OTAxN30.cwMg6lKXP6C1ebIGTm0z0m1NtCJrhC5VbRir0qQAcUY';
-      final newHeaders = {...headers, 'Authorization': 'Bearer $accessToken'};
+      final newHeaders = {...headers, 'Authorization': 'Bearer $token'};
       final response = await http.get(Uri.parse('$baseUri/$_path?$query'),
           headers: newHeaders);
       if (response.statusCode == 200) {

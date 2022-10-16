@@ -52,12 +52,20 @@ class OrderService implements IOrderService {
   @override
   Future<Order?> save(Order data, {String? token}) async {
     try {
+
+      final body = json.encode({
+        "product": data.product.sId,
+        "quantity": data.quantity,
+        "priceUnit": data.priceUnit,
+      });
+      logger.v(body, "data");
+      final newHeaders = {...headers, 'Authorization': 'Bearer $token'};
       final response = await http.post(Uri.parse('$baseUri/$_path'),
-          body: json.encode(data.toJson()), headers: headers);
-      if (response.statusCode == 200) {
+          body: body, headers: newHeaders);
+      if (response.statusCode == 201) {
         final orderJson = json.decode(utf8.decode(response.bodyBytes));
         logger.v(orderJson, "Saved");
-        return Order.fromJson(orderJson);
+        return Order.fromJson(orderJson['order']);
       } else {
         logger.e("save failed!");
         return null;

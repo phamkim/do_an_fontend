@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 
 abstract class IUserService extends IGeneralService<User> {
   Future<dynamic> login(String userName, String passWord);
+  Future<dynamic> refreshToken(String refreshToken);
   Future<bool> logout(String refreshToken);
 }
 
@@ -37,14 +38,11 @@ class UserService implements IUserService {
   @override
   Future<User?> findById(String? id, {String? token}) async {
     try {
-      const accessToken =
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzM3YzBjZTlkYjUzZjBlNGViOTJkZDkiLCJpYXQiOjE2NjQ4OTE4MTcsImV4cCI6MTY2NDg5OTAxN30.cwMg6lKXP6C1ebIGTm0z0m1NtCJrhC5VbRir0qQAcUY';
-      final newHeaders = {...headers, 'Authorization': 'Bearer $accessToken'};
+      final newHeaders = {...headers, 'Authorization': 'Bearer $token'};
       final response =
           await http.get(Uri.parse('$baseUri/$_path/$id'), headers: newHeaders);
       if (response.statusCode == 200) {
         final userJson = json.decode(utf8.decode(response.bodyBytes));
-        logger.v(userJson, "user");
         return User.fromJson(userJson['user']);
       } else {
         logger.e('Failed to load user/$id');
@@ -120,7 +118,7 @@ class UserService implements IUserService {
       final body = json.encode({"userName": userName, "passWord": passWord});
       final response = await http.post(Uri.parse('$baseUri/$_path/login'),
           headers: headers, body: body);
-      logger.i(response);
+      logger.i(response.body);
       if (response.statusCode == 200) {
         dynamic responseJson = json.decode(utf8.decode(response.bodyBytes));
         logger.i(responseJson);
@@ -147,6 +145,24 @@ class UserService implements IUserService {
       } else {
         logger.e('Failed to login');
         return false;
+      }
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  @override
+  Future<dynamic> refreshToken(String refreshToken) async {
+    try {
+      final body = json.encode({"refreshToken": refreshToken});
+      final response = await http.post(Uri.parse('$baseUri/$_path/refresh-token'),
+          headers: headers, body: body);
+      if (response.statusCode == 200) {
+        dynamic responseJson = json.decode(utf8.decode(response.bodyBytes));
+        return responseJson;
+      } else {
+        logger.e('Failed to refresh-token');
+        return null;
       }
     } catch (e) {
       throw Exception(e);

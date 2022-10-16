@@ -1,11 +1,12 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../core/viewmodels/auth_view_model.dart';
+import '../../core/controllers/auth_controller.dart';
 import './login_view.dart';
 import 'package:lottie/lottie.dart';
 import '../constance.dart';
 
-class RegisterView extends GetWidget<AuthViewModel> {
+class RegisterView extends GetWidget<AuthController> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   RegisterView({Key? key}) : super(key: key);
   @override
@@ -16,16 +17,10 @@ class RegisterView extends GetWidget<AuthViewModel> {
       borderRadius: borderRadius,
       borderSide: BorderSide(color: primaryColor),
     );
+    double height = context.height;
     double width = context.width;
     return Scaffold(
-      appBar: AppBar(
-        leading: GestureDetector(
-          onTap: () {
-            Get.off(const LoginView());
-          },
-          child: const Icon(Icons.arrow_back),
-        ),
-      ),
+      appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(kPadding),
         child: ListView(
@@ -35,7 +30,7 @@ class RegisterView extends GetWidget<AuthViewModel> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: width * 0.7,
+                    height: height * 0.3,
                     child: Lottie.network(
                         "https://assets6.lottiefiles.com/packages/lf20_u8o7BL.json"),
                   ),

@@ -1,12 +1,12 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../core/viewmodels/home_view_model.dart';
+import '../../core/controllers/home_controller.dart';
 import '../constance.dart';
 import 'category_button.dart';
 import 'skeleton/categories_skeleton.dart';
 
-class ListCategory extends GetView<HomeViewModel> {
+class ListCategory extends GetView<HomeController> {
   const ListCategory({Key? key}) : super(key: key);
 
   @override
@@ -29,8 +29,8 @@ class ListCategory extends GetView<HomeViewModel> {
                         active: controller.selectedCategoryIndex.value == index
                             ? Theme.of(context).focusColor
                             : Theme.of(context).cardColor,
-                        photo: controller.categories[index].photo,
-                        name: controller.categories[index].name),
+                        photo: controller.categories[index].photo!,
+                        name: controller.categories[index].name!),
                   );
                 },
                 separatorBuilder: (BuildContext context, int index) =>

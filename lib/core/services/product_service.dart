@@ -37,8 +37,7 @@ class ProductService implements IProductService {
           await http.get(Uri.parse('$baseUri/$_path/$id'), headers: headers);
       if (response.statusCode == 200) {
         final productJson = json.decode(utf8.decode(response.bodyBytes));
-        logger.v(productJson, "product");
-        return Product.fromJson(productJson);
+        return Product.fromJson(productJson['product']);
       } else {
         logger.e('Failed to load product/$id');
         return null;

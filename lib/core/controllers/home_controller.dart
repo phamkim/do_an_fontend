@@ -4,8 +4,8 @@ import '../models/product_model.dart';
 import '../services/category_service.dart';
 import '../services/product_service.dart';
 
-class HomeViewModel extends GetxController {
-  HomeViewModel(
+class HomeController extends GetxController {
+  HomeController(
       {required this.productService,
       required this.categoryService});
 
@@ -32,8 +32,7 @@ class HomeViewModel extends GetxController {
 
   void getAllCategories() async {
     await categoryService.getAll().then((value) {
-      categories.value = value!;
-      categories.refresh();
+      categories(value);
       var query =
           'categoryId=${categories.elementAt(selectedCategoryIndex.value).sId}';
       getAllProducts(query);
@@ -42,7 +41,6 @@ class HomeViewModel extends GetxController {
 
   void getAllProducts(String query) async {
     var listProduct = await productService.getAll(query: query);
-    products.value = (listProduct)!;
-    products.refresh();
+    products(listProduct);
   }
 }
